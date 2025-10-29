@@ -1,0 +1,20 @@
+[build]
+builder = "nixpacks"
+
+[build.environment]
+PHP_VERSION = "8.2"
+
+[build.phpextensions]
+- intl
+- gd
+- zip
+- mbstring
+- exif
+- pdo_mysql
+
+[deploy]
+startCommand = "php artisan serve --host=0.0.0.0 --port=$PORT"
+
+[deploy.scripts]
+build = "composer install --optimize-autoloader --no-dev --no-interaction"
+migrate = "php artisan migrate --force"
